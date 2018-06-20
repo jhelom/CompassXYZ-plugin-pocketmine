@@ -1,0 +1,8 @@
+north: 'North'
+northwest: 'Northwest'
+northeast: 'Northeast'
+east: 'East'
+west: 'West'
+south: 'South'
+southwest: 'Southwest'
+southeast: 'Southeast'
