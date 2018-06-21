@@ -132,6 +132,9 @@ class Main extends PluginBaseEx implements Listener
         $this->getCompassService()->removePlayer($event->getPlayer());
     }
 
+    /**
+     * @param PlayerMoveEvent $event
+     */
     public function onPlayerMove(PlayerMoveEvent $event)
     {
         $this->getCompassService()->sendToPlayer($event->getPlayer(), $event->getTo());

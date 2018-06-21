@@ -122,6 +122,10 @@ class CompassService
         }
     }
 
+    /**
+     * @param Player $player
+     * @param Vector3 $location
+     */
     public function sendToPlayer(Player $player, Vector3 $location): void
     {
         $key = $player->getLowerCaseName();
