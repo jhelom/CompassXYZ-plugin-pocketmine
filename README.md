@@ -4,6 +4,8 @@ This is PocketMine-MP Plugin.
 
 Show Player Coordinates.
 
+![console](https://github.com/jhelom/CompassXYZ-plugin-pocketmine/blob/develop/assets/xyz.png)
+
 # Commands
 
 ```

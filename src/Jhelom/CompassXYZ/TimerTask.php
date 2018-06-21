@@ -31,6 +31,6 @@ class TimerTask extends Task
      */
     public function onRun(int $currentTick)
     {
-        $this->main->getCompassService()->sendXYZ();
+        $this->main->getCompassService()->sendToPlayerAll();
     }
 }

@@ -12,6 +12,7 @@ use Jhelom\Core\PluginBaseEx;
 use Jhelom\Core\StringFormat;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerItemHeldEvent;
+use pocketmine\event\player\PlayerMoveEvent;
 use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\item\Item;
 use pocketmine\scheduler\Task;
@@ -23,9 +24,9 @@ use pocketmine\scheduler\Task;
  */
 class Main extends PluginBaseEx implements Listener
 {
-    const INTERVAL_MIN = 1;
+    const INTERVAL_MIN = 10;
     const INTERVAL_MAX = 1200;
-    const INTERVAL_DEFAULT = 10;
+    const INTERVAL_DEFAULT = 25;
 
     private const PLUGIN_UPDATE_URL = 'https://github.com/jhelom/CompassXYZ-plugin-pocketmine/releases';
 
@@ -57,7 +58,7 @@ class Main extends PluginBaseEx implements Listener
 
         // TODO: scheduler
         $interval = $this->getInterval();
-
+        $this->getLogger()->debug('interval = ' . $interval);
         if (method_exists($this, 'getScheduler')) {
             $this->getScheduler()->scheduleDelayedRepeatingTask($this->task, $interval, $interval);
         } else {
@@ -129,6 +130,11 @@ class Main extends PluginBaseEx implements Listener
     public function onPlayerQuit(PlayerQuitEvent $event)
     {
         $this->getCompassService()->removePlayer($event->getPlayer());
+    }
+
+    public function onPlayerMove(PlayerMoveEvent $event)
+    {
+        $this->getCompassService()->sendToPlayer($event->getPlayer(), $event->getTo());
     }
 
     /**
