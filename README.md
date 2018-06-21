@@ -1,5 +1,12 @@
 # CompassXYZ
 
+[![](https://poggit.pmmp.io/shield.state/CompassXYZ)](https://poggit.pmmp.io/p/CompassXYZ)
+<a href="https://poggit.pmmp.io/p/CompassXYZ"><img src="https://poggit.pmmp.io/shield.state/CompassXYZ"></a>
+
+[![](https://poggit.pmmp.io/shield.api/CompassXYZ)](https://poggit.pmmp.io/p/CompassXYZ)
+<a href="https://poggit.pmmp.io/p/CompassXYZ"><img src="https://poggit.pmmp.io/shield.api/CompassXYZ"></a>
+
+
 This is PocketMine-MP Plugin.
 
 Show Player Coordinates.
