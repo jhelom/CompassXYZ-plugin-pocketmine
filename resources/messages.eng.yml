@@ -1,6 +1,6 @@
 command-description: 'Show Player Coordinates.'
 command-usage: '/xyz [on|off]'
-command-execute-in-game: '§cThis command execute in game.'
+command-execute-in-game: '§cThis command execute in the game.'
 
 north: 'North'
 northwest: 'Northwest'
