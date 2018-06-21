@@ -14,6 +14,7 @@ use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerItemHeldEvent;
 use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\item\Item;
+use pocketmine\scheduler\Task;
 
 
 /**
@@ -33,7 +34,15 @@ class Main extends PluginBaseEx implements Listener
 
     /** @var CompassService */
     private $compassService;
+
+    /** @var Task */
     private $task;
+
+    public function onLoad()
+    {
+        parent::onLoad();
+        $this->messages = new Messages($this, $this->getAvailableMessageFilePath());
+    }
 
     public function onEnable()
     {
@@ -42,8 +51,6 @@ class Main extends PluginBaseEx implements Listener
         $this->saveDefaultConfig();
         $this->reloadConfig();
 
-
-        $this->messages = new Messages($this, $this->getAvailableMessageFilePath());
         $this->compassService = new CompassService($this);
 
         $this->task = new TimerTask($this);
@@ -63,6 +70,9 @@ class Main extends PluginBaseEx implements Listener
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
     }
 
+    /**
+     * @return int
+     */
     private function getInterval(): int
     {
         $interval = $this->getConfig()->get('interval');
@@ -86,6 +96,9 @@ class Main extends PluginBaseEx implements Listener
         return $this->messages;
     }
 
+    /**
+     * @param PlayerItemHeldEvent $event
+     */
     public function onPlayerItemHeldEvent(PlayerItemHeldEvent $event)
     {
         $item = $event->getItem();
@@ -100,14 +113,19 @@ class Main extends PluginBaseEx implements Listener
         } else {
             $this->getCompassService()->removePlayer($player);
         }
-
     }
 
+    /**
+     * @return CompassService
+     */
     public function getCompassService(): CompassService
     {
         return $this->compassService;
     }
 
+    /**
+     * @param PlayerQuitEvent $event
+     */
     public function onPlayerQuit(PlayerQuitEvent $event)
     {
         $this->getCompassService()->removePlayer($event->getPlayer());
