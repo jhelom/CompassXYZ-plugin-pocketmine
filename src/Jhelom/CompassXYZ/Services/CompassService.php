@@ -6,6 +6,7 @@ namespace Jhelom\CompassXYZ\Services;
 
 use Jhelom\CompassXYZ\Main;
 use Jhelom\Core\StringFormat;
+use pocketmine\math\Vector3;
 use pocketmine\Player;
 
 /**
@@ -19,6 +20,7 @@ class CompassService
 
     /** @var Player[] */
     private $players = [];
+    private $cache = [];
 
     private $directionTable = [];
 
@@ -34,7 +36,7 @@ class CompassService
             [
                 22.5,
                 67.5,
-                $this->main->getMessages()->northeast()
+                $this->main->getMessages()->northwest()
             ],
             [
                 67.5,
@@ -90,6 +92,7 @@ class CompassService
     {
         $key = $player->getLowerCaseName();
         unset($this->players[$key]);
+        unset($this->cache[$key]);
     }
 
     /**
@@ -101,17 +104,42 @@ class CompassService
         $this->players[$key] = $player;
     }
 
-    public function sendXYZ(): void
+    private const LOCATION_FORMAT = "{0}\nX:{1} Y:{2} Z:{3}";
+
+    public function sendToPlayerAll(): void
     {
         foreach ($this->players as $name => $player) {
-            $s = StringFormat::format("{0}\nX:{1} Y:{2} Z:{3}",
+            $s = StringFormat::format(self::LOCATION_FORMAT,
                 $this->getDirection($player->getYaw()),
                 $player->getFloorX(),
                 $player->getFloorY(),
                 $player->getFloorZ());
 
+            $key = $player->getLowerCaseName();
+            $this->cache[$key] = $s;
+
             $player->sendPopup($s);
         }
+    }
+
+    public function sendToPlayer(Player $player, Vector3 $location): void
+    {
+        $s = StringFormat::format(self::LOCATION_FORMAT,
+            $this->getDirection($player->getYaw()),
+            $location->getFloorX(),
+            $location->getFloorY(),
+            $location->getFloorZ());
+
+        $key = $player->getLowerCaseName();
+
+        if (array_key_exists($key, $this->cache)) {
+            if ($this->cache[$key] === $s) {
+                return;
+            }
+        }
+
+        $this->cache[$key] = $s;
+        $player->sendPopup($s);
     }
 
     /**
