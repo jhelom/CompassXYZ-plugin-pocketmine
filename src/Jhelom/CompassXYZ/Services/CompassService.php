@@ -124,13 +124,17 @@ class CompassService
 
     public function sendToPlayer(Player $player, Vector3 $location): void
     {
+        $key = $player->getLowerCaseName();
+
+        if (!array_key_exists($key, $this->players)) {
+            return;
+        }
+
         $s = StringFormat::format(self::LOCATION_FORMAT,
             $this->getDirection($player->getYaw()),
             $location->getFloorX(),
             $location->getFloorY(),
             $location->getFloorZ());
-
-        $key = $player->getLowerCaseName();
 
         if (array_key_exists($key, $this->cache)) {
             if ($this->cache[$key] === $s) {
