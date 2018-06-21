@@ -1,0 +1,12 @@
+command-description: 'Show Player Coordinates.'
+command-usage: '/xyz [on|off]'
+command-execute-in-game: '§cThis command execute in game.'
+
+north: 'North'
+northwest: 'Northwest'
+northeast: 'Northeast'
+east: 'East'
+west: 'West'
+south: 'South'
+southwest: 'Southwest'
+southeast: 'Southeast'
