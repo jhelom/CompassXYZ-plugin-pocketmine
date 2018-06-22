@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace Jhelom\CompassXYZ\Services;
 
 
+use Jhelom\CompassXYZ\Libs\StringFormat;
 use Jhelom\CompassXYZ\Main;
-use Jhelom\Core\StringFormat;
 use pocketmine\math\Vector3;
 use pocketmine\Player;
 

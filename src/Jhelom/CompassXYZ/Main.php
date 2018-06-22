@@ -5,11 +5,11 @@ namespace Jhelom\CompassXYZ;
 
 
 use Jhelom\CompassXYZ\Commands\XYZCommand;
+use Jhelom\CompassXYZ\Libs\ISupportedLanguage;
+use Jhelom\CompassXYZ\Libs\PluginBaseEx;
+use Jhelom\CompassXYZ\Libs\PluginCommandEx;
+use Jhelom\CompassXYZ\Libs\StringFormat;
 use Jhelom\CompassXYZ\Services\CompassService;
-use Jhelom\Core\CommandInvoker;
-use Jhelom\Core\ISupportedLanguage;
-use Jhelom\Core\PluginBaseEx;
-use Jhelom\Core\StringFormat;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerItemHeldEvent;
 use pocketmine\event\player\PlayerMoveEvent;
@@ -141,7 +141,7 @@ class Main extends PluginBaseEx implements Listener
     }
 
     /**
-     * @return CommandInvoker[]
+     * @return PluginCommandEx[]
      */
     protected function setupCommands(): array
     {

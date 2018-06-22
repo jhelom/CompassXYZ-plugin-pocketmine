@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Jhelom\CompassXYZ;
 
 
-use Jhelom\Core\PluginMessages;
+use Jhelom\CompassXYZ\Libs\PluginMessages;
 
 /**
  * Class Messages
@@ -17,7 +17,7 @@ class Messages extends PluginMessages
      */
     public function north(): string
     {
-        return $this->_getMessage('north');
+        return $this->_get('north');
     }
 
     /**
@@ -25,7 +25,7 @@ class Messages extends PluginMessages
      */
     public function northeast(): string
     {
-        return $this->_getMessage('northeast');
+        return $this->_get('northeast');
     }
 
     /**
@@ -33,7 +33,7 @@ class Messages extends PluginMessages
      */
     public function northwest(): string
     {
-        return $this->_getMessage('northwest');
+        return $this->_get('northwest');
     }
 
     /**
@@ -41,7 +41,7 @@ class Messages extends PluginMessages
      */
     public function east(): string
     {
-        return $this->_getMessage('east');
+        return $this->_get('east');
     }
 
     /**
@@ -49,7 +49,7 @@ class Messages extends PluginMessages
      */
     public function west(): string
     {
-        return $this->_getMessage('west');
+        return $this->_get('west');
     }
 
     /**
@@ -57,7 +57,7 @@ class Messages extends PluginMessages
      */
     public function south(): string
     {
-        return $this->_getMessage('south');
+        return $this->_get('south');
     }
 
     /**
@@ -65,7 +65,7 @@ class Messages extends PluginMessages
      */
     public function southwest(): string
     {
-        return $this->_getMessage('southwest');
+        return $this->_get('southwest');
     }
 
     /**
@@ -73,7 +73,7 @@ class Messages extends PluginMessages
      */
     public function southeast(): string
     {
-        return $this->_getMessage('southeast');
+        return $this->_get('southeast');
     }
 
     /**
@@ -81,7 +81,7 @@ class Messages extends PluginMessages
      */
     public function commandDescription(): string
     {
-        return $this->_getMessage('command-description');
+        return $this->_get('command-description');
 
     }
 
@@ -90,7 +90,7 @@ class Messages extends PluginMessages
      */
     public function commandUsage(): string
     {
-        return $this->_getMessage('command-usage');
+        return $this->_get('command-usage');
     }
 
     /**
@@ -98,6 +98,6 @@ class Messages extends PluginMessages
      */
     public function commandExecuteInGame(): string
     {
-        return $this->_getMessage('command-execute-in-game');
+        return $this->_get('command-execute-in-game');
     }
 }

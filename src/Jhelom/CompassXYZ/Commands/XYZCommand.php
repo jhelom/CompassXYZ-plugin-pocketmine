@@ -4,9 +4,9 @@ declare(strict_types=1);
 namespace Jhelom\CompassXYZ\Commands;
 
 
+use Jhelom\CompassXYZ\Libs\CommandArguments;
+use Jhelom\CompassXYZ\Libs\PluginCommandEx;
 use Jhelom\CompassXYZ\Main;
-use Jhelom\Core\CommandArguments;
-use Jhelom\Core\CommandInvoker;
 use pocketmine\command\CommandSender;
 use pocketmine\Player;
 
@@ -15,7 +15,7 @@ use pocketmine\Player;
  * Class XYZCommand
  * @package Jhelom\CompassXYZ\Commands
  */
-class XYZCommand extends CommandInvoker
+class XYZCommand extends PluginCommandEx
 {
     private const COMMAND_NAME = 'xyz';
 
@@ -38,9 +38,9 @@ class XYZCommand extends CommandInvoker
     /**
      * @param CommandSender $sender
      * @param CommandArguments $args
-     * @return bool
+     * @return void
      */
-    protected function onInvoke(CommandSender $sender, CommandArguments $args): bool
+    public function onInvoke(CommandSender $sender, CommandArguments $args): void
     {
         if ($sender instanceof Player) {
             $value = $args->getBool();
@@ -56,7 +56,5 @@ class XYZCommand extends CommandInvoker
         } else {
             $sender->sendMessage($this->main->getMessages()->commandExecuteInGame());
         }
-
-        return true;
     }
 }
