@@ -1,7 +1,7 @@
 name: CompassXYZ
 main: Jhelom\CompassXYZ\Main
-version: "1.1"
-api: ["3.0.0", "3.0.0-ALPHA12"]
+version: "1.2"
+api: ["4.0.0+dev", "3.0.0", "3.0.0-ALPHA12"]
 load: STARTUP
 author: Jhelom
 description: Show Player Coordinates
