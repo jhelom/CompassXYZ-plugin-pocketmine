@@ -108,11 +108,14 @@ class Main extends PluginBaseEx implements Listener
         $this->getLogger()->debug(StringFormat::format('item={0}, id={1}, damage={2}, ', $item->getName(), $item->getId(), $item->getDamage()));
 
         $player = $event->getPlayer();
+        $service = $this->getCompassService();
 
         if ($itemId === Item::COMPASS) {
-            $this->getCompassService()->addPlayer($player);
+            $service->addPlayer($player);
         } else {
-            $this->getCompassService()->removePlayer($player);
+            if (!$service->getOnOff($player)) {
+                $service->removePlayer($player);
+            }
         }
     }
 

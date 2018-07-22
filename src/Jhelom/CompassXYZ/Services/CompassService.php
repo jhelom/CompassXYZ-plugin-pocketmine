@@ -21,7 +21,7 @@ class CompassService
     /** @var Player[] */
     private $players = [];
     private $cache = [];
-
+    private $onoff = [];
     private $directionTable = [];
 
     /**
@@ -93,6 +93,7 @@ class CompassService
         $key = $player->getLowerCaseName();
         unset($this->players[$key]);
         unset($this->cache[$key]);
+        unset($this->onoff[$key]);
     }
 
     /**
@@ -165,5 +166,32 @@ class CompassService
         }
 
         return $this->main->getMessages()->west();
+    }
+
+    /**
+     * @param Player $player
+     * @param bool $value
+     */
+    public function setOnOff(Player $player, bool $value): void
+    {
+        $key = $player->getLowerCaseName();
+
+        if ($value) {
+            $this->onoff[$key] = true;
+            $this->addPlayer($player);
+        } else {
+            unset($this->onoff[$key]);
+            $this->removePlayer($player);
+        }
+    }
+
+    /**
+     * @param Player $player
+     * @return bool
+     */
+    public function getOnOff(Player $player): bool
+    {
+        $key = $player->getLowerCaseName();
+        return array_key_exists($key, $this->onoff);
     }
 }

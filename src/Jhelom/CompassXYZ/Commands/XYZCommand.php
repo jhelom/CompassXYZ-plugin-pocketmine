@@ -47,11 +47,12 @@ class XYZCommand extends PluginCommandEx
             $service = $this->main->getCompassService();
 
             if (is_null($value)) {
+                $service->setOnOff($sender, !$service->getOnOff($sender));
                 $service->togglePlayer($sender);
             } else if ($value === true) {
-                $service->addPlayer($sender);
+                $service->setOnOff($sender, true);
             } else if ($value === false) {
-                $service->removePlayer($sender);
+                $service->setOnOff($sender, false);
             }
         } else {
             $sender->sendMessage($this->main->getMessages()->commandExecuteInGame());
