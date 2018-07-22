@@ -262,17 +262,27 @@ class PluginUpdater
     {
         $this->plugin->getLogger()->info($this->getMessage('outdated', $currentFile, $downloadFile));
         $save_path = $this->downloadDirectory . DIRECTORY_SEPARATOR . $downloadFile;
+
         $this->plugin->getLogger()->info($this->getMessage('download_start', $downloadFile));
         $this->download($downloadUrl, $save_path);
+
         $this->plugin->getLogger()->info($this->getMessage('download_end', $downloadFile));
 
-        $old_plugin_path = $this->plugin->getServer()->getDataPath() . 'plugins' . DIRECTORY_SEPARATOR . $currentFile;
-        $new_plugin_path = $this->plugin->getServer()->getDataPath() . 'plugins' . DIRECTORY_SEPARATOR . $downloadFile;
+        $plugin_dir = $this->plugin->getServer()->getDataPath() . 'plugins' . DIRECTORY_SEPARATOR;
+        $old_plugin_path = $plugin_dir . $currentFile;
+
+        if (!is_file($old_plugin_path)) {
+            $old_plugin_path = $plugin_dir . $this->plugin->getDescription()->getName() . '.phar';
+        }
+
+        $new_plugin_path = $plugin_dir . $downloadFile;
 
         if (is_file($old_plugin_path)) {
             unlink($old_plugin_path);
             $this->plugin->getLogger()->info($this->getMessage('deleted', $currentFile));
         }
+
+        $this->plugin->getLogger()->debug('rename: ' . $old_plugin_path . " => " . $new_plugin_path);
 
         rename($save_path, $new_plugin_path);
         $this->plugin->getLogger()->info($this->getMessage('updated', $downloadFile));
