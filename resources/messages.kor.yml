@@ -1,0 +1,12 @@
+command-description: '자신의 좌표를 표시'
+command-usage: '/xyz [on|off]'
+command-execute-in-game: '§c이 명령은 게임 내에서 실행하십시오.'
+
+north: '북'
+northwest: '북서'
+northeast: '북동'
+east: '동'
+west: '서'
+south: '남'
+southwest: '남서'
+southeast: '남동'

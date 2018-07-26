@@ -160,7 +160,8 @@ class Main extends PluginBaseEx implements Listener
     {
         return [
             ISupportedLanguage::ENGLISH,
-            ISupportedLanguage::JAPANESE
+            ISupportedLanguage::JAPANESE,
+            ISupportedLanguage::KOREAN
         ];
     }
 
