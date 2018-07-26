@@ -11,4 +11,5 @@ interface ISupportedLanguage
 {
     const ENGLISH = 'eng';
     const JAPANESE = 'jpn';
+    const KOREAN = 'kor';
 }
