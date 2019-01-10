@@ -73,7 +73,7 @@ class PluginUpdater
             $this->downloadDirectory = $this->plugin->getDataFolder() . 'updater';
 
             if (!is_dir($this->downloadDirectory)) {
-                mkdir($this->downloadDirectory, 755, true);
+                mkdir($this->downloadDirectory, 0755, true);
             }
 
             $this->loadSettings();
